@@ -1,0 +1,9 @@
+USERS: code_users, name
+POSSEDE, 11 TASKS, 1N USERS
+TASKS: code_todo, description
+CONTIENT, 0N TASKS, 0N TAGS
+
+:
+:
+:
+TAGS: code_tags, title
