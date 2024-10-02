@@ -1,6 +1,8 @@
-import { Matches } from "class-validator";
+import { Matches, validateOrReject } from "class-validator";
 import {
   BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   ManyToMany,
@@ -22,4 +24,12 @@ export class Tags extends BaseEntity {
 
   @ManyToMany(() => Tasks, (tasks) => tasks.tags)
   tasks: Tasks[];
+
+  // NL tech tips: https://www.youtube.com/watch?v=BxH9NYMuTrU
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async validate() {
+    await validateOrReject(this);
+  }
 }

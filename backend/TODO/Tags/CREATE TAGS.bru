@@ -1,0 +1,18 @@
+meta {
+  name: CREATE TAGS
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/tags
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Urgent",
+    "color": "#FF1B1C"
+  }
+}
