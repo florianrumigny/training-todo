@@ -69,6 +69,8 @@ app.put("/tasks/:id", async (req, res) => {
 
     const modifiedTask = Object.assign(task, req.body);
 
+    console.log(modifiedTask);
+
     const result = await modifiedTask.save();
 
     console.log(result);
