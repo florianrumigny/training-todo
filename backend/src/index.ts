@@ -104,6 +104,42 @@ app.post("/users", async (req, res) => {
   }
 });
 
+app.delete("/users/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+
+    const result = await Users.delete(id);
+
+    console.log("User deleted", result);
+
+    res.status(200).send("User has been deleted");
+  } catch (error) {
+    console.log(error);
+    res.status(404).send("Error deleting user");
+  }
+});
+
+app.put("/users/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+
+    const user = await Users.findOneByOrFail({ id });
+
+    const modifiedUser = Object.assign(user, req.body);
+
+    const result = await modifiedUser.save();
+
+    console.log(result);
+
+    res.status(200).send("User updated");
+  } catch (error) {
+    console.log(error);
+    res.status(404).send("App has been modified :)");
+  }
+});
+
+// CRUD TAGS
+
 app.listen(port, async () => {
   await dataSource.initialize();
   console.log(`Server is running at http://localhost:${port}`);
